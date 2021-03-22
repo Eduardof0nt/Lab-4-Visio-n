@@ -5,27 +5,28 @@ import skimage.filters
 from skimage import io
 import os
 
-filename = os.getcwd() + '/Ejercicio-1/Img/Ejercicio1-b.jpeg'
 
-image = io.imread(filename, as_gray=True)
-imageOriginal = io.imread(filename, as_gray=False)
+image = io.imread(os.getcwd() + '/Ejercicio-1/Img/ruido01.jpg', as_gray=False)
+image2 = io.imread(os.getcwd() + '/Ejercicio-1/Img/Ejercicio1-a.jpg', as_gray=True)
 
-# thresh = skimage.filters.threshold_otsu(image)
-# binary = image > thresh
+# filteredImage = skimage.filters.gaussian(image, multichannel=False, sigma=2)
 
 fig, ax = plt.subplots(1, 1)
-ax.imshow(imageOriginal, cmap=plt.cm.gray)
+ax.imshow(image, cmap=plt.cm.gray)
 ax.set_title('Original')
 ax.axis('off')
 
-# ax[0].imshow(imageOriginal, cmap=plt.cm.gray)
-# ax[0].set_title('Original')
-# ax[0].axis('off')
+fig1, ax1 = plt.subplots(1, 1)
+ax1.hist(image.ravel(), bins=256, histtype='step', color='black', density=True)
+ax1.set_title('Histograma Original')
 
-# ax[1].imshow(binary, cmap=plt.cm.gray)
-# ax[1].set_title('Thresholded')
-# ax[1].axis('off')
+fig2, ax2 = plt.subplots(1, 1)
+ax2.imshow(image2, cmap=plt.cm.gray)
+ax2.set_title('Prueba')
+ax2.axis('off')
 
-fig1, ax1 = skimage.filters.try_all_threshold(image, figsize=(10, 6), verbose=False)
+fig3, ax3 = plt.subplots(1, 1)
+ax3.hist(image2.ravel(), bins=256, histtype='step', color='black', density=True)
+ax3.set_title('Histograma De Prueba')
 
 plt.show()
