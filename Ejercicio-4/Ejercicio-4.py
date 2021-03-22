@@ -12,7 +12,7 @@ image = io.imread(os.getcwd() + '/Ejercicio-4/Img/ruido04.jpg', as_gray=True)
 
 print(image.shape)
 
-transform = np.fft.rfft2(image-0.5)
+transform = np.fft.rfft2(image)
 
 transformM = np.abs(transform).astype('float64')
 
@@ -24,8 +24,6 @@ for i in range(0, transformM.shape[0]):
         transformM[i,j] *= m
         transformM[i,j] += b
 # transformP = np.angle(transform)
-
-print(transformM.min())
 
 def lowPass2D(x, y, w0):
     return w0/(w0 + 1j*(x**2 + y**2)**0.5)
@@ -93,5 +91,9 @@ fig5, ax5 = plt.subplots(1, 1)
 ax5.imshow(filterImg4, cmap=plt.cm.gray)
 ax5.set_title('Filtro Pasa Altas Horizontal')
 ax5.axis('off')
+
+fig1, ax1 = plt.subplots(1, 1)
+ax1.hist(image.ravel(), bins=256, histtype='step', color='black', density=True)
+ax1.set_title('Histograma Original')
 
 plt.show()

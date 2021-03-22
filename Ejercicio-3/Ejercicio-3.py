@@ -21,8 +21,7 @@ Gy = np.rot90(Gx, k=1)
 
 G45 = np.array([[0,1,2],[-1,0,1],[-2,-1,0]])
 G135 = np.rot90(G45, k=1)
-print(G45)
-print(G135)
+
 
 def convolve_1d(array, kernel):
     ks = kernel.shape[0] # shape gives the dimensions of an array, as a tuple
